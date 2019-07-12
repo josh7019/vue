@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id='app1'>
+            total:{{total}}<br>
+        <click-button v-bind:init-count='20' v-on:cclick='totalcount'></click-button>
+            <click-button v-bind:init-count='30' v-on:cclick='totalcount'></click-button>
+
+    </div>
+    
+
+<script>
+    
+    Vue.component('click-button',{
+        props:['initCount'],
+        data:function(){
+            return {
+                clickTimes:this.initCount
+            };
+        },
+        methods:{
+            clickcount:function(){
+                 this.clickTimes++;
+             }
+        },
+        template:`<button v-on:click="clickcount(); $emit('cclick')"> 
+            點擊次數 :{{clickTimes}}
+            </button>`
+    })
+        // Vue.component('標籤名稱',傳入物件{
+
+        // })
+
+
+
+    var app1= new Vue({
+        el:'#app1',
+        data:{
+            clickTimes:0,
+            total:50
+        },
+        methods:{
+             totalcount:function(){
+                 this.total++;
+             },
+             
+        }
+        
+        
+    })
+
+</script>
+
+</body>
+</html>

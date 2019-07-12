@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id='app1'>
+        firstname:<input type="text" v-model='firstName'><br>
+        lastname:<input type="text" v-model='lastName'><br>
+        {{ fullName | first4 }}
+    </div>
+
+
+<script>
+    var app=new Vue({
+        el:'#app1',
+        data:{
+            firstName:'god',
+            lastName:'father'
+        },
+        computed:{
+            fullName:function(){
+                return this.firstName+this.lastName;
+            }
+        },
+        filters:{
+            first4:function(value){
+                value="0000"+value;
+                return value.substr(value.length-4,4);
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>
